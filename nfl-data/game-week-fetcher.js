@@ -7,12 +7,12 @@ module.exports = {
 function fetchGameWeek() {
     var weekType = 'REG'; 
     var currentDate = moment(); 
-    var seasonStartWeek = moment(currentDate.year() + "-9-5", "YYYY-MM-DD").week();
+    var seasonStartWeek = moment(currentDate.year() + "-09-13", "YYYY-MM-DD").week();
     var currentWeek = currentDate.week() - seasonStartWeek + 1; 
     
     if(currentWeek < 1) {
        weekType = 'PRE'; 
-       currentWeek += 3; 
+       currentWeek += 4; 
     }
     
     return {

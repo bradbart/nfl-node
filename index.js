@@ -6,8 +6,8 @@ var liveDataRouter = require('./routers/live-data.router');
 var app = express(); 
 app.use(Error404Handler); 
 app.use(require('express-promise')()); 
-app.use('/nfl/weekly', weeklyDataRouter); 
-app.use('/nfl/live', liveDataRouter); 
+app.use('/weekly', weeklyDataRouter); 
+app.use('/live', liveDataRouter); 
 app.use(Error500Handler); 
 
 function Error404Handler(_, response, next) {

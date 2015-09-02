@@ -1,5 +1,5 @@
 var xml2js = require('xml2js'); 
-var Q = require('Q'); 
+var Q = require('q'); 
 xml2js.parseString = Q.nbind(xml2js.parseString, xml2js); 
 
 module.exports = {
@@ -24,12 +24,12 @@ function projectToGame(data) {
         homeTeam: {
             id: data.h, 
             name: data.hnn, 
-            score: data.hs
+            score: data.hs || 0
         }, 
         visitorTeam: {
             id: data.v, 
             name: data.vnn, 
-            score: data.vs
+            score: data.vs || 0
         }
     }; 
 }

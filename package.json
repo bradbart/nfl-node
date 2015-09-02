@@ -1,0 +1,26 @@
+{
+  "name": "nfl-node",
+  "version": "1.0.0",
+  "description": "Web server to fetch nfl data",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bradbart/nfl-node.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bradbart/nfl-node/issues"
+  },
+  "homepage": "https://github.com/bradbart/nfl-node#readme",
+  "dependencies": {
+    "express": "^4.13.3",
+    "express-promise": "^0.4.0",
+    "moment": "^2.10.6",
+    "request": "^2.61.0",
+    "xml2js": "^0.4.11"
+  }
+}

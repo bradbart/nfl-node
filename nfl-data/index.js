@@ -1,6 +1,6 @@
 var util = require('util'); 
 var request = require('request');
-var Q = require('Q'); 
+var Q = require('q'); 
 var gameDataMapper = require('./game-data-mapper'); 
 var gameWeekFetcher = require('./game-week-fetcher'); 
 request = Q.nbind(request, request); 
