@@ -8,45 +8,32 @@ request = Q.nbind(request, request);
 var WEEKLY_NFL_SCORE_URL = 'http://nfl.com/ajax/scorestrip?season=%d&seasonType=%s&week=%d'; 
 
 module.exports = {
-    getWeeklyGames: getWeeklyGames, 
-    getWeeklyGame: getWeeklyGame,
-    getCurrentGames: getCurrentGames, 
-    getCurrentGame: getCurrentGame, 
-    getUpcomingGames: getUpcomingGames, 
-    getUpcomingGame: getUpcomingGame
+    getGameOverviews: getGameOverviews
 }; 
+
+function getGameOverviews(filter) {
+    var info = {}; 
+    if(filter.weekInfo) {
+        info.year = filter.weekInfo.year,
+        info.type = filter.weekInfo.type, 
+        info.week = filter.weekInfo.week
+    } else {
+        info = gameWeekFetcher.fetchGameWeek(filter.offset || 0);  
+    }
+    
+    var result = getWeeklyGames(info.year, info.type, info.week); 
+    if(filter.team) {
+        return result.then(function(data) {
+            return filterGamesByTeam(data, filter.team);  
+        }); 
+    }
+    
+    return result; 
+}
 
 function getWeeklyGames(seasonYear, seasonType, weekNumber) {
     var url = util.format(WEEKLY_NFL_SCORE_URL, seasonYear, seasonType, weekNumber); 
     return request(url).then(gameDataMapper.mapGameData);  
-}
-
-function getWeeklyGame(seasonYear, seasonType, weekNumber, teamId) {
-    return getWeeklyGames(seasonYear, seasonType, weekNumber).then(function(data) {
-        return filterGamesByTeam(data, teamId); 
-    }); 
-}
-
-function getCurrentGames() {
-    var info = gameWeekFetcher.fetchGameWeek(); 
-    return getWeeklyGames(info.year, info.type, info.week); 
-}
-
-function getCurrentGame(teamId) {
-    return getCurrentGames().then(function(data) {
-        return filterGamesByTeam(data, teamId); 
-    }); 
-}
-
-function getUpcomingGames(offset) {
-    var info = gameWeekFetcher.fetchGameWeek(offset); 
-    return getWeeklyGames(info.year, info.type, info.week); 
-}
-
-function getUpcomingGame(offset, teamId) {
-    return getUpcomingGames(offset).then(function(data) {
-        return filterGamesByTeam(data, teamId); 
-    }); 
 }
 
 function filterGamesByTeam(games, teamId) {

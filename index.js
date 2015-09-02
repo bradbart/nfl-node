@@ -4,9 +4,7 @@ var nflData = require('./nfl-data');
 var app = express(); 
 app.use(Error404Handler); 
 app.use(require('express-promise')()); 
-app.use('/weekly', require('./routers/weekly-games.router')); 
-app.use('/current', require('./routers/current-games.router')); 
-app.use('/upcoming', require('./routers/upcoming-games.router')); 
+app.use('/overviews', require('./routers/game-overviews.router')); 
 app.use(Error500Handler); 
 
 function Error404Handler(_, response, next) {
