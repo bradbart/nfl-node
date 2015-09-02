@@ -1,13 +1,12 @@
 var express = require('express'); 
 var nflData = require('./nfl-data');
-var weeklyDataRouter = require('./routers/weekly-data.router'); 
-var liveDataRouter = require('./routers/live-data.router'); 
 
 var app = express(); 
 app.use(Error404Handler); 
 app.use(require('express-promise')()); 
-app.use('/weekly', weeklyDataRouter); 
-app.use('/live', liveDataRouter); 
+app.use('/weekly', require('./routers/weekly-games.router')); 
+app.use('/current', require('./routers/current-games.router')); 
+app.use('/upcoming', require('./routers/upcoming-games.router')); 
 app.use(Error500Handler); 
 
 function Error404Handler(_, response, next) {

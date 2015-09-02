@@ -4,11 +4,11 @@ module.exports = {
 	fetchGameWeek: fetchGameWeek
 }; 
 
-function fetchGameWeek() {
+function fetchGameWeek(offset) {
     var weekType = 'REG'; 
-    var currentDate = moment(); 
-    var seasonStartWeek = moment(currentDate.year() + "-09-13", "YYYY-MM-DD").week();
-    var currentWeek = currentDate.week() - seasonStartWeek + 1; 
+    var targetDate = moment().add(offset, 'weeks'); 
+    var seasonStartDay = moment("2015-09-10", "YYYY-MM-DD").dayOfYear();
+    var currentWeek = Math.floor((targetDate.dayOfYear() - seasonStartDay)/7) + 1; 
     
     if(currentWeek < 1) {
        weekType = 'PRE'; 
@@ -16,7 +16,7 @@ function fetchGameWeek() {
     }
     
     return {
-        year: currentDate.year(), 
+        year: 2015, 
         type: weekType, 
         week: currentWeek
     }; 

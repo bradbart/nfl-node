@@ -11,7 +11,9 @@ module.exports = {
     getWeeklyGames: getWeeklyGames, 
     getWeeklyGame: getWeeklyGame,
     getCurrentGames: getCurrentGames, 
-    getCurrentGame: getCurrentGame
+    getCurrentGame: getCurrentGame, 
+    getUpcomingGames: getUpcomingGames, 
+    getUpcomingGame: getUpcomingGame
 }; 
 
 function getWeeklyGames(seasonYear, seasonType, weekNumber) {
@@ -32,6 +34,17 @@ function getCurrentGames() {
 
 function getCurrentGame(teamId) {
     return getCurrentGames().then(function(data) {
+        return filterGamesByTeam(data, teamId); 
+    }); 
+}
+
+function getUpcomingGames(offset) {
+    var info = gameWeekFetcher.fetchGameWeek(offset); 
+    return getWeeklyGames(info.year, info.type, info.week); 
+}
+
+function getUpcomingGame(offset, teamId) {
+    return getUpcomingGames(offset).then(function(data) {
         return filterGamesByTeam(data, teamId); 
     }); 
 }
