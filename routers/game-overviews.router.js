@@ -2,7 +2,7 @@ var express = require('express');
 var nflData = require('../nfl-data');
 
 module.exports = express.Router()
-	.get('/current/:team?', requestHandler)
+	.get('/live/:team?', liveHandler)
 	.get('/upcoming/:offset/:team?', requestHandler)
 	.get('/:year/:type/:week/:team?', requestHandler)
 	
@@ -19,4 +19,11 @@ function requestHandler(request, response) {
 	filter.team = request.params.team || null; 
 	
 	response.send(nflData.getGameOverviews(filter)); 
+}
+
+function liveHandler(request, response) {
+	var filter = {}; 
+	filter.team = request.params.team || null; 
+	var result = nflData.getLiveScores(filter); 
+	response.send(result); 
 }
