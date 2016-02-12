@@ -5,6 +5,9 @@ var app = express();
 app.use(Error404Handler); 
 app.use(require('express-promise')()); 
 app.use('/overviews', require('./routers/game-overviews.router')); 
+app.use('/test', function(request, response){
+    response.send('testing'); 
+}); 
 app.use(Error500Handler); 
 
 function Error404Handler(_, response, next) {
