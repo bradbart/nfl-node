@@ -4,7 +4,7 @@ var nflData = require('../nfl-data');
 module.exports = express.Router()
 	.get('/live/:team?', liveHandler)
 	.get('/upcoming/:offset/:team?', requestHandler)
-	.get('/:year/:type/:week/:team?', requestHandler)
+	.get('/:year/:type/:week/:team?', requestHandler); 
 	
 function requestHandler(request, response) {
 	var filter = {}; 

@@ -4,7 +4,8 @@
   "description": "Web server to fetch nfl data",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"no test specified\" && exit 0"
+    "test": "mocha",
+    "lint": "jshint . --exclude node_modules"
   },
   "repository": {
     "type": "git",
@@ -22,5 +23,9 @@
     "moment": "^2.10.6",
     "request": "^2.61.0",
     "xml2js": "^0.4.11"
+  },
+  "devDependencies": {
+    "jshint": "^2.9.1",
+    "mocha": "^2.4.5"
   }
 }

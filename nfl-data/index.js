@@ -16,9 +16,9 @@ module.exports = {
 function getGameOverviews(filter) {
     var info = {}; 
     if(filter.weekInfo) {
-        info.year = filter.weekInfo.year,
-        info.type = filter.weekInfo.type, 
-        info.week = filter.weekInfo.week
+        info.year = filter.weekInfo.year; 
+        info.type = filter.weekInfo.type;
+        info.week = filter.weekInfo.week; 
     } else {
         info = gameWeekFetcher.fetchGameWeek(filter.offset || 0);  
     }

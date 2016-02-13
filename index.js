@@ -15,11 +15,11 @@ function Error404Handler(_, response, next) {
 	response.send = function(body) {
 		if(!body || body === "false") {
 			response.status(404); 
-			send('404 - Resource Not Found')
+			send('404 - Resource Not Found'); 
 		} else {
 			send(body); 		
 		}
-	} 
+	}; 
 	next(); 
 }
 

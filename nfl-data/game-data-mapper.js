@@ -11,7 +11,7 @@ function mapGameData(data) {
 }
 
 function transformResult(data) {
-    var results = data.ss.gms[0].g.map(projectToGame)
+    var results = data.ss.gms[0].g.map(projectToGame); 
     results.forEach(function(item) {
         var update; 
         item.updateText = ""; 
