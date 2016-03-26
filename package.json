@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha",
-    "lint": "jshint . --exclude node_modules"
+    "lint": "jshint . --exclude node_modules", 
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
